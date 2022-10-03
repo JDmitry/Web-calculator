@@ -165,7 +165,8 @@
 
                 xhr.onload = () => {
                     if (xhr.status == 200) {                
-                        out.textContent = xhr.responseText;      
+                        out.textContent = xhr.responseText;
+                        numFirst = out.textContent;
                     } else {                                
                         console.log("Server response: ", xhr.statusText);
                     }
