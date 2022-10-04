@@ -19,7 +19,7 @@ app.post("/side",  jsonParser, function(request, response) {
             break;
         case "/":
             if (request.body.num2 === '0') {
-                request.body.num1 = 'Error';
+                request.body.num1 = '';
                 return;
             }
             request.body.num1 = request.body.num1 / request.body.num2;
