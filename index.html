@@ -45,7 +45,7 @@
             user-select: none;
         }
 
-        .clear-btn {
+        #clear-btn {
             width: 60px;
             height: 60px;
             background: #b12020;
@@ -65,11 +65,11 @@
             filter: brightness(90%);
         }
 
-        .clear-btn:hover {
+        #clear-btn:hover {
             filter: brightness(120%);
         }
 
-        .clear-btn:active {
+        #clear-btn:active {
             filter: brightness(90%);
         }
 
@@ -113,7 +113,7 @@
             <p>0</p>
         </div>
         <div class="buttons">
-            <div class="clear-btn">C</div>
+            <div id="clear-btn">C</div>
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="empty"></div> 
@@ -150,21 +150,29 @@
 
         const out = document.querySelector(".calc-screen p");
 
+        document.getElementById('clear-btn').onclick = (event) => {
+            location.reload();
+        }
+
         document.querySelector('.buttons').onclick = (event) => {
             if(!event.target.classList.contains('btn')) return;
-            
+
             out.textContent = '';
             const key = event.target.textContent;
 
             if (digit.includes(key)) {
+
                 if(numSecond === '' && sign === '') {
+
                     numFirst += key;
                     out.textContent = numFirst;
                 } else if (numFirst !== '' && numSecond !== '' && finish) {
+
                     numSecond = key;
+                    out.textContent = numSecond;
                     finish = false;
-                    out.textContent = numFirst;
                 } else {
+
                     numSecond += key;
                     out.textContent = numSecond;
                 }
@@ -189,10 +197,18 @@
                 xhr.setRequestHeader("Content-Type", "application/json");
 
                 xhr.onload = () => {
-                    if (xhr.status == 200) {                
+                    if (xhr.status == 200) {
+
                         out.textContent = xhr.responseText;
                         numFirst = out.textContent;
-                    } else {                                
+                        if (out.textContent == 'null') {
+                            out.textContent = 'error';
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        }
+                    }else {        
+                        
                         console.log("Server response: ", xhr.statusText);
                     }
                 }
