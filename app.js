@@ -1,38 +1,14 @@
 const express = require("express");
-
 const app = express();
+// const controller = require("./controllers/controller.js");
+const router = require("../Web-calculator/routers/router");
 const jsonParser = express.json();
 
-app.post("/side",  jsonParser, function(request, response) {
-    
-    if(!request.body) return response.sendStatus(400);
+app.post("/side", jsonParser, router);
+app.get("/", router);
 
-    switch(request.body.s) {
-        case "+":
-            request.body.num1 = (+request.body.num1) + (+request.body.num2);
-            break;
-        case "-":
-            request.body.num1 = request.body.num1 - request.body.num2;
-            break;
-        case "*":
-            request.body.num1 = request.body.num1 * request.body.num2;
-            break;
-        case "/":
-            try {
-
-                request.body.num1 = request.body.num1 / request.body.num2;
-            } catch(err) {
-
-                console.log(err);
-            }
-    }
-    
-   response.json(request.body.num1);
+app.use(function (req, res, next) {
+    res.status(404).send("Not Found");
 });
 
-app.get("/", function(request, response) {
-
-    response.sendFile(__dirname + "/index.html");
-});
-
-app.listen(3000, () => console.log("Server is working"));
+app.listen(3000, () => console.log("Server is working on port: 3000"));
