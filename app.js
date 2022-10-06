@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const router = require("../Web-calculator/routers/router");
+const router = require(__dirname + "/routers/router");
 const jsonParser = express.json();
 
 app.post("/site", jsonParser, router);

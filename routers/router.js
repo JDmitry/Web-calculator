@@ -1,5 +1,5 @@
 const express = require("express");
-const controller = require("/home/ds/Neoflex/Web-calculator/controllers/controller.js");
+const controller = require(process.cwd() + "/controllers/controller.js");
 const router = express.Router();
 const jsonParser = express.json();
 
