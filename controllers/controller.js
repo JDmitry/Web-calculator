@@ -15,12 +15,13 @@ exports.result = function(request, response) {
             request.body.num1 = request.body.num1 - request.body.num2;
             break;
         case "*":
-            request.body.num1 = request.body.num1 * request.body.num2;
+            request.body.num1 = Math.round((request.body.num1 * request.body.num2) * 100) / 100;
             break;
         case "/":
             try {
 
                 request.body.num1 = request.body.num1 / request.body.num2;
+                break;
             } catch(err) {
 
                 console.log(err);

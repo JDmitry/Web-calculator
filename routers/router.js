@@ -3,7 +3,7 @@ const controller = require("/home/ds/Neoflex/Web-calculator/controllers/controll
 const router = express.Router();
 const jsonParser = express.json();
 
-router.use("/side", controller.result);
+router.use("/site", controller.result);
 router.use("/", controller.index);
 
 module.exports = router;
