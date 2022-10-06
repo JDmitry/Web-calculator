@@ -1,6 +1,5 @@
 exports.index = function (request, response) {
-    response.sendFile("/home/ds/Neoflex/Web-calculator/index.html");
-    // response.sendFile(__dirname + "/index.html");
+    response.sendFile(process.cwd() + "/index.html");
 };
 
 exports.result = function(request, response) {
@@ -20,7 +19,7 @@ exports.result = function(request, response) {
         case "/":
             try {
 
-                request.body.num1 = request.body.num1 / request.body.num2;
+                request.body.num1 = +(request.body.num1 / request.body.num2).toFixed(10);
                 break;
             } catch(err) {
 

@@ -5,6 +5,7 @@ const jsonParser = express.json();
 
 app.post("/site", jsonParser, router);
 app.get("/", router);
+app.use(express.static(__dirname + '/public'));
 
 app.use(function (request, response, next) {
     response.status(404).send("Not Found");

@@ -51,7 +51,7 @@ document.querySelector('.buttons').onclick = (event) => {
         });
             
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/side", true);
+        xhr.open("POST", "/site", true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.onload = () => {
@@ -73,11 +73,15 @@ document.querySelector('.buttons').onclick = (event) => {
 
         xhr.send(data);
         finish = true;
-    } else if (key === '=' && (numFirst === '' || numSecond === '' || sign === '')) {
-
-        out.textContent = 'again';
-        setTimeout(function() {
-            location.reload();
-        }, 1500);
+    } else if (key === '=' && numFirst !== '' &&  sign === '' && numSecond === '') {
+        out.textContent = numFirst;
+    } else if (key === '=' && numFirst !== ''  && numSecond === '' && sign !== '') {
+        out.textContent = sign;
+    } else if (key === '=' && numFirst === '' && numSecond === '' && sign === '') {
+        out.textContent = '0';
+    } else if (key === '=' && numFirst === '' && numSecond === '' && sign !== '') {
+        out.textContent = sign;
+    } else if (key === '=' && numFirst === ''  && numSecond !== '' && sign !== '') {
+        location.reload();
     }
 }
