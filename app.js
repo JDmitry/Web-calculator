@@ -11,4 +11,6 @@ app.use(function (request, response, next) {
     response.status(404).send("Not Found");
 });
 
-app.listen(3000, () => console.log("Server is working on port: 3000"));
+app.listen(3000, "127.0.0.1", function() {
+    console.log("Server is running on http//127.0.0.1:3000")
+});

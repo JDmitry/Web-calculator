@@ -37,6 +37,7 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
     if(action.includes(key)) {
+        
         sign = key;
         out.textContent = sign;
         return;
